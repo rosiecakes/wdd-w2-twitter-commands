@@ -18,6 +18,8 @@ class LoadTweetsTestCase(TestCase):
         args = [self.user.username]
         call_command('loadtweets', *args)
         self.assertEqual(Tweet.objects.count(), 10)
+        for tweet in Tweet.objects.all():
+            self.assertEqual(tweet.user, self.user)
 
     def test_load_tweets_command_invalid_username(self):
         """Should raise CommandError when given username does not exist"""
@@ -34,3 +36,5 @@ class LoadTweetsTestCase(TestCase):
         args = [self.user.username, "--count=20"]
         call_command('loadtweets', *args)
         self.assertEqual(Tweet.objects.count(), 20)
+        for tweet in Tweet.objects.all():
+            self.assertEqual(tweet.user, self.user)

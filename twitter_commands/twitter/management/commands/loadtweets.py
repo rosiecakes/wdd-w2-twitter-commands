@@ -35,5 +35,3 @@ class Command(BaseCommand):
             Tweet.objects.create(
                 user=user, content=tweet.text, created=tweet.created_at
             )
-
-        # print("Finished. {} tweets has been loaded".format(len(tweets)))
