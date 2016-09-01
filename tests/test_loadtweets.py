@@ -21,15 +21,6 @@ class LoadTweetsTestCase(TestCase):
         for tweet in Tweet.objects.all():
             self.assertEqual(tweet.user, self.user)
 
-    def test_load_tweets_command_invalid_username(self):
-        """Should raise CommandError when given username does not exist"""
-        self.assertEqual(Tweet.objects.count(), 0)
-        args = ["INVALID"]
-        with self.assertRaises(CommandError) as e:
-            call_command('loadtweets', *args)
-        self.assertEqual(e.exception.args[0], 'User "INVALID" does not exist')
-        self.assertEqual(Tweet.objects.count(), 0)
-
     def test_load_tweets_command_count(self):
         """Should import the amount of tweets specified in the --count argument"""
         self.assertEqual(Tweet.objects.count(), 0)
@@ -38,3 +29,21 @@ class LoadTweetsTestCase(TestCase):
         self.assertEqual(Tweet.objects.count(), 20)
         for tweet in Tweet.objects.all():
             self.assertEqual(tweet.user, self.user)
+
+    def test_load_tweets_command_username_not_found(self):
+        """Should raise CommandError when given username does not exist"""
+        self.assertEqual(Tweet.objects.count(), 0)
+        args = ["INVALID"]
+        with self.assertRaises(CommandError) as e:
+            call_command('loadtweets', *args)
+        self.assertEqual(e.exception.args[0], 'User "INVALID" does not exist')
+        self.assertEqual(Tweet.objects.count(), 0)
+
+    def test_load_tweets_command_invalid_username(self):
+        """Should raise TypeError when given username is not a string"""
+        self.assertEqual(Tweet.objects.count(), 0)
+        args = [123]
+        with self.assertRaises(TypeError) as e:
+            call_command('loadtweets', *args)
+        self.assertEqual(e.exception.args[0], "'int' object is not subscriptable")
+        self.assertEqual(Tweet.objects.count(), 0)
