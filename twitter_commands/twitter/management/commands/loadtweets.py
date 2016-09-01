@@ -3,7 +3,6 @@ from django.core.management.base import BaseCommand, CommandError
 
 from twitter.models import Tweet, User
 
-
 consumer_key = "hyo6w5ew77IVnk844ECSJCAgw"
 consumer_secret = "CshiCMqkDCVvg8lRtdqPxlDoleOUTAw7fdhHCojTEzkd3TaMVN"
 
