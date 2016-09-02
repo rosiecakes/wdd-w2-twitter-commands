@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('username', type=str)
         parser.add_argument(
-            '--count', default=10,
+            '--count', default=10, type=int,
             help='Amount of tweets that you want to load from API.',
         )
 
@@ -23,15 +23,17 @@ class Command(BaseCommand):
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:
-            user = None
-
-        if not user:
             raise CommandError('User "{}" does not exist'.format(username))
 
         tweets = api.user_timeline(options['username'], count=options['count'])
+        loaded_tweets = 0
         for tweet in tweets:
             if not Tweet.objects.filter(id=tweet.id).exists():
+                loaded_tweets += 1
                 Tweet.objects.create(
                     id=tweet.id, user=user, content=tweet.text,
                     created=tweet.created_at
                 )
+
+        self.stdout.write(
+            "Finished. {} tweets have been imported.".format(loaded_tweets))
