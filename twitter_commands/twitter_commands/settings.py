@@ -135,3 +135,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'twitter/media/')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'twitter.User'
+
+CONSUMER_KEY = "hyo6w5ew77IVnk844ECSJCAgw"
+CONSUMER_SECRET = "CshiCMqkDCVvg8lRtdqPxlDoleOUTAw7fdhHCojTEzkd3TaMVN"

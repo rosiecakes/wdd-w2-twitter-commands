@@ -47,3 +47,15 @@ class LoadTweetsTestCase(TestCase):
             call_command('loadtweets', *args)
         self.assertEqual(e.exception.args[0], "'int' object is not subscriptable")
         self.assertEqual(Tweet.objects.count(), 0)
+
+    def test_load_tweets_command_repeated_tweets(self):
+        """Should not load tweets that already exists in the DB"""
+        self.assertEqual(Tweet.objects.count(), 0)
+        args = [self.user.username, "--count=20"]
+        call_command('loadtweets', *args)
+        self.assertEqual(Tweet.objects.count(), 20)
+        for tweet in Tweet.objects.all():
+            self.assertEqual(tweet.user, self.user)
+        args = [self.user.username, "--count=50"]
+        call_command('loadtweets', *args)
+        self.assertEqual(Tweet.objects.count(), 50)

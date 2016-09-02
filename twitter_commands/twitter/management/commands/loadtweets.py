@@ -1,10 +1,8 @@
 import tweepy
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from twitter.models import Tweet, User
-
-consumer_key = "hyo6w5ew77IVnk844ECSJCAgw"
-consumer_secret = "CshiCMqkDCVvg8lRtdqPxlDoleOUTAw7fdhHCojTEzkd3TaMVN"
 
 
 class Command(BaseCommand):
@@ -18,7 +16,8 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth = tweepy.OAuthHandler(settings.CONSUMER_KEY,
+                                   settings.CONSUMER_SECRET)
         api = tweepy.API(auth)
         username = options['username']
         try:
@@ -31,6 +30,8 @@ class Command(BaseCommand):
 
         tweets = api.user_timeline(options['username'], count=options['count'])
         for tweet in tweets:
-            Tweet.objects.create(
-                user=user, content=tweet.text, created=tweet.created_at
-            )
+            if not Tweet.objects.filter(id=tweet.id).exists():
+                Tweet.objects.create(
+                    id=tweet.id, user=user, content=tweet.text,
+                    created=tweet.created_at
+                )
