@@ -19,11 +19,11 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             '--from_date', default='',
-            help="Filter tweets created after this date. i.e: --from_date='2016-4-21'",
+            help="Filter tweets created after this date. i.e: --from_date=2016-4-21",
         )
         parser.add_argument(
             '--to_date', default='',
-            help="Filter tweets created before this date. i.e: --to_date='2016-4-21'",
+            help="Filter tweets created before this date. i.e: --to_date=2016-4-21",
         )
 
     def handle(self, *args, **options):
