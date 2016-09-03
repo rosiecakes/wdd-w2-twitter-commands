@@ -1,0 +1,21 @@
+Done:
+1.  Create virtualenvs & edit postactivate & postdeactivate scripts with
+    DJANGO_SETTINGS_MODULE & PYTHONPATH env variables
+2.  Set up application through Twitter API, and configure CONSUMER_KEY & 
+    CONSUMER_SECRET in twitter_commands/settings.py
+3.  Add management/commands directories to twitter app with package structure
+
+To do:
+1.  Implement loadtweets command using tweepy
+    a.  Use tweepy wrapper
+    b.  API limits tweets returned to 200 at a time -- notify user on a 
+        larger request, or handle silently?
+    c.  Validate that user exists in our db that matches username; raise
+        CommandError exception if not
+2.  Implement tweetsreport command
+    a.  Email report (will be displayed in the console)
+3.  Implement CRON job to run tweetsreport command on specific schedule
+    a.  Set project environment variables in the scope of the command only
+
+Questions:
+1.  
