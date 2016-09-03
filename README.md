@@ -15,6 +15,8 @@ CONSUMER_KEY = "YOUR_CUSTOMER_KEY"
 CONSUMER_SECRET = "YOUR_CUSTOMER_SECRET"
 ```
 
+Instead of requesting the Twitter API manually, you will probably want to take a look at the TweetPy library that will make your life easier: [http://www.tweepy.org/](http://www.tweepy.org/)
+
 Example of usage:
 ```
 $ django-admin loadtweets rmotr_com --count=99
