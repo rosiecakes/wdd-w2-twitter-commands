@@ -9,6 +9,7 @@ Done:
 6.  Configure EMAIL_BACKEND in twitter_commands/settings.py & implement email
 
 To do:
+-   Install + add tweepy?
 1.  Implement loadtweets command using tweepy
     a.  Use tweepy wrapper
     b.  API limits tweets returned to 200 at a time -- notify user on a 

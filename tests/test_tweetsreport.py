@@ -80,10 +80,12 @@ class TweetsReportTestCase(TestCase):
         with self.assertRaises(CommandError) as e:
             call_command('tweetsreport', *args)
         self.assertEqual(e.exception.args[0],
-                         "Not a valid date: 'INVALID_FROM_DATE'.")
+                        #  "Not a valid date: 'INVALID_FROM_DATE'.")
+                        "Error: argument --from_date: Not a valid date: 'INVALID_FROM_DATE'.")
 
         args = ["--to_date=INVALID_TO_DATE"]
         with self.assertRaises(CommandError) as e:
             call_command('tweetsreport', *args)
         self.assertEqual(e.exception.args[0],
-                         "Not a valid date: 'INVALID_TO_DATE'.")
+                        #  "Not a valid date: 'INVALID_TO_DATE'.")
+                        "Error: argument --to_date: Not a valid date: 'INVALID_TO_DATE'.")

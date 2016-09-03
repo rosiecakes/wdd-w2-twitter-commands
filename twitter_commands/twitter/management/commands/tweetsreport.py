@@ -57,8 +57,6 @@ class Command(BaseCommand):
             ['recipient@twitter-commands.com'],
             fail_silently=False,
         )
-        
-        # print('\n'.join(report))
 
 
 def valid_date(dt):
@@ -69,5 +67,6 @@ def valid_date(dt):
     try:
         return datetime.strptime(dt, '%Y-%m-%d')
     except ValueError:
-        msg = 'Not a valid date: "{}"\nFormat date YYYY-MM-DD'.format(dt)
+        # msg = 'Not a valid date: "{}"\nFormat date YYYY-MM-DD'.format(dt)
+        msg = "Not a valid date: '{}'.".format(dt)
         raise argparse.ArgumentTypeError(msg)
