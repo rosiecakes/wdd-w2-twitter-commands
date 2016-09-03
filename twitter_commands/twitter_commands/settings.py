@@ -138,3 +138,5 @@ AUTH_USER_MODEL = 'twitter.User'
 
 CONSUMER_KEY = "kaPLpF8LV4X6A4Z7q9WA1h09K"
 CONSUMER_SECRET = "YArIBkPvL8u9Hr4CcHPamBHaUgUtsVsjwzeKqvPwiF6eWnC2TQ"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

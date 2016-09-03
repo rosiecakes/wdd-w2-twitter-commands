@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 
 from datetime import datetime
@@ -36,7 +37,7 @@ class Command(BaseCommand):
                             created__lte=options['to_date']
                         )
         
-        # Process the tweets
+        # Process the tweets and create the report
         report_line = '{username}: {tweet_count}'
         report = []
         for user in User.objects.all():
@@ -47,8 +48,17 @@ class Command(BaseCommand):
                     tweet_count=tweet_count
                 )
             )
-            
-        print('\n'.join(report))
+        
+        # Send the email
+        send_mail(
+            'Tweetsreport for Twitter Commands with Django', # subject
+            '\n'.join(report), # body
+            'noreply@twitter-commands.com',
+            ['recipient@twitter-commands.com'],
+            fail_silently=False,
+        )
+        
+        # print('\n'.join(report))
 
 
 def valid_date(dt):
