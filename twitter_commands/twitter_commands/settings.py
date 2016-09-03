@@ -122,7 +122,10 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
+
+
 from django.contrib.messages import constants as messages
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -138,5 +141,8 @@ AUTH_USER_MODEL = 'twitter.User'
 
 CONSUMER_KEY = "kaPLpF8LV4X6A4Z7q9WA1h09K"
 CONSUMER_SECRET = "YArIBkPvL8u9Hr4CcHPamBHaUgUtsVsjwzeKqvPwiF6eWnC2TQ"
+
+ACCESS_TOKEN = '89374840-9UzAxJjZBQWO3Diq2EaxE6R3egX1UBtu3DyE07p4g'
+ACCESS_TOKEN_SECRET = 'Do4OVXgrNT24QFdz3b0PFGUh9QB1uno53dT549FIbFkgV'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
