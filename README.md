@@ -8,6 +8,13 @@ This command will use the Twitter RESTful API to consume user's Tweets and will 
 
 A `username` argument must be specified with the username that wants to be imported. A second optional argument `--count` might be specified to limit the amout of Tweets that will be imported.
 
+Make sure you configure the Twitter API customer Key and Secret in order to be able to consume the API. You will probably need to go to the Twitter Apps page ([https://apps.twitter.com/](https://apps.twitter.com/)), and either register a new app, or use the keys from an application you already have. 
+There are two special settings you will need to complete:
+```
+CONSUMER_KEY = "YOUR_CUSTOMER_KEY"
+CONSUMER_SECRET = "YOUR_CUSTOMER_SECRET"
+```
+
 Example of usage:
 ```
 $ django-admin loadtweets rmotr_com --count=99
